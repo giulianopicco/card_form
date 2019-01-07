@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Edit card</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <img id="imagenAnuncio" class="card-img-top" src="https://marketingland.com/wp-content/ml-loads/2017/02/IMG_6146-800x563.jpg"
+                        alt="">
+                    <div id="bodyAnuncio" class="card-body">
+                        <h4 id="tituloAnuncio" class="card-title">Title</h4>
+                        <p id="textoAnuncio" class="card-text">Text</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="">Imagen del anuncio</label>
+                    <input type="file" class="form-control-file" name="imagen" id="imagen" placeholder="select an image"
+                        aria-describedby="fileHelpId">
+                </div>
+                <div class="form-group">
+                    <label for="titulo">Titulo</label>
+                    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="" aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">inserte el titulo del anuncio</small>
+                </div>
+                <div class="form-group">
+                    <label for="texto">Texto</label>
+                    <input type="text" name="texto" id="texto" class="form-control" placeholder="" aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">inserte el texto del anuncio</small>
+                </div>
+                <div class="form-group">
+                    <label for="color">Color</label>
+                    <input type="color" name="color" id="color" class="form-control" placeholder="" aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">inserte el color del anuncio</small>
+                </div>
+                <div class="form-group">
+                    <label for="colorTexto">Color de Texto</label>
+                    <input type="color" name="colorTexto" id="colorTexto" class="form-control" placeholder=""
+                        aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">inserte el color del texto del anuncio</small>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script>
+        // var image = document.getElementById('imagen');
+        // var imagenAnuncio = document.getElementById('imagenAnuncio');
+        // image.addEventListener('input', function () {
+        //     imagenAnuncio.src = image.files[0].name;
+        // });
+
+        var image = document.getElementById("imagen");;
+        image.addEventListener('input', function(){
+
+            var fReader = new FileReader();
+            // fReader.onloadend = function (event) {
+                image = document.getElementById("imagen");
+                fReader.readAsDataURL(image.files[0]);
+                console.log('are we here?');
+                var imagenAnuncio = document.getElementById("imagenAnuncio");
+                imagenAnuncio.src = event.target.result;
+            // };
+        });
+
+        // var reader;
+        // reader = new FileReader();
+        // // reader.onloadstart = function () {
+        // //     self.photoArea.addClass('photo--loading');
+        // // }
+        // reader.onloadend = function (data) {
+        //     self.photoImg.css({ left: 0, top: 0 });
+        //     var base64Image = data.target.result;
+        //     processFile(base64Image, file.type);
+        // }
+
+        var titulo = document.getElementById('titulo');
+        var tituloAnuncio = document.getElementById('tituloAnuncio');
+        titulo.addEventListener('input', function () {
+            console.log('titulo has been changed');
+            tituloAnuncio.innerHTML = titulo.value;
+        });
+
+        var texto = document.getElementById('texto');
+        var textoAnuncio = document.getElementById('textoAnuncio');
+        texto.addEventListener('input', function () {
+            console.log('texto has been changed');
+            textoAnuncio.innerHTML = texto.value;
+        });
+
+        var color = document.getElementById('color');
+        var bodyAnuncio = document.getElementById('bodyAnuncio');
+        color.addEventListener('input', function () {
+            console.log('color has been changed');
+            bodyAnuncio.style.background = color.value;
+        });
+
+        var colorTexto = document.getElementById('colorTexto');
+        colorTexto.addEventListener('input', function () {
+            console.log('colorTexto has been changed');
+            bodyAnuncio.style.color = colorTexto.value;
+        });
+
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+        
+        console.log('we are here');
+        
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imagenAnuncio').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $("#imagen").on('change', function () {
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function () {
+            $(".file-upload").click();
+        });
+    });
+    </script>
+</body>
+
+</html>
